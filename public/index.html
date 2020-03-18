@@ -14,14 +14,14 @@
 
     <body>
 
-        <div onClick="javascipt: loginWithFacebook()">
+        <div id="loginbtn"> 
             <a>
                 <h3>Login with facebook</h3>
             </a>
         </div>
 
         <script>
-            window.fbAsyncInit = function() {
+             window.fbAsyncInit = function() {
                 FB.init({
                     appId      : '596724407548790',
                     cookie     : true,
@@ -30,7 +30,6 @@
                 });
       
                 FB.AppEvents.logPageView(); 
-                fbSDKLoaded();
             };
 
             (function(d, s, id){
@@ -41,22 +40,15 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
 
-            let loginWithFacebook= _=>_
-
-
-            function fbSDKLoaded(){
-                FB.getLoginStatus(function(response) {
-                    console.log(response);
-                    if(response.status== "unknown"){
-                        loginWithFacebook= _=>{ 
-                            FB.login( response=>{
-                                console.log(response);
-                            })
-                        }
-                    }
-                });   
+            document.getElementById('loginbtn').addEventListener('click', loginWithFaceBook, false)
+            
+            function loginWithFaceBook(e){
+                e.preventDefault();
+                FB.login( response=>{
+                        console.log(response);
+                },{scope: 'public_profile,email'})
+                return false;
             }
-
 
         </script>
     </body>
