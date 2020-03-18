@@ -14,7 +14,7 @@
 
     <body>
 
-        <a href="">
+        <a href="" onClick="javascript: loginWithFacebook()">
             <h3>Login with facebook</h3>
         </a>
 
@@ -27,11 +27,8 @@
                     version    : 'v6.0'
                 });
       
-                FB.AppEvents.logPageView();
-                FB.getLoginStatus(function(response) {
-                    console.log(response);
-                    statusChangeCallback(response);
-                });   
+                FB.AppEvents.logPageView(); 
+                fbSDKLoaded();
             };
 
             (function(d, s, id){
@@ -41,6 +38,22 @@
                 js.src = "https://connect.facebook.net/en_US/sdk.js";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
+
+            let loginWithFacebook= _=>_
+
+            function fbSDKLoaded(){
+                FB.getLoginStatus(function(response) {
+                    console.log(response);
+                    if(response.status== "unknown"){
+                        loginWithFacebook= _=>{
+                            console.log('g');
+                            FB.login( response=>{
+                                console.log(response);
+                            },{scopes:'public_profile, email'})
+                        }
+                    }
+                });   
+            }
 
         </script>
     </body>
