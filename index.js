@@ -21,8 +21,8 @@ require('./prod.js')(app);
 app.set("view engine", "pug");
 
 app.get('/',async function(req,res){
-    res.status(200).render('facebook');
-});
+    res.sendFile('./public/index.html',{root:__dirname});
+  });
 
 const port=process.env.PORT || 3000;
 console.log(port);
