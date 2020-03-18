@@ -14,7 +14,7 @@
 
     <body>
 
-        <a href="" onClick="javascript: loginWithFacebook()">
+        <a href="">
             <h3>Login with facebook</h3>
         </a>
 
@@ -45,12 +45,9 @@
                 FB.getLoginStatus(function(response) {
                     console.log(response);
                     if(response.status== "unknown"){
-                        loginWithFacebook= _=>{
-                            console.log('g');
                             FB.login( response=>{
-                                console.log(response);
-                            },{scopes:'public_profile, email'})
-                        }
+                            console.log(response);
+                        },{scopes:'public_profile, email'})
                     }
                 });   
             }
