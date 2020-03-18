@@ -14,9 +14,11 @@
 
     <body>
 
-        <a href="">
-            <h3>Login with facebook</h3>
-        </a>
+        <div onClick="javascipt: loginWithFacebook()">
+            <a>
+                <h3>Login with facebook</h3>
+            </a>
+        </div>
 
         <script>
             window.fbAsyncInit = function() {
@@ -41,16 +43,20 @@
 
             let loginWithFacebook= _=>_
 
+
             function fbSDKLoaded(){
                 FB.getLoginStatus(function(response) {
                     console.log(response);
                     if(response.status== "unknown"){
+                        loginWithFacebook= _=>{ 
                             FB.login( response=>{
-                            console.log(response);
-                        },{scopes:'public_profile, email'})
+                                console.log(response);
+                            })
+                        }
                     }
                 });   
             }
+
 
         </script>
     </body>
