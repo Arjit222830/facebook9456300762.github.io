@@ -1,0 +1,47 @@
+
+<html>
+    <head>
+        <title>Facebook</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="facebook.css"> 
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <script src="jquery.min.js"></script>
+        <script src="bootstrap.min_cloudfare.js"></script>
+        <script src="bootstrap.min.js"></script>
+    </head>
+
+    <body>
+
+        <a href="">
+            <h3>Login with facebook</h3>
+        </a>
+
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId      : '596724407548790',
+                    cookie     : true,
+                    xfbml      : true,
+                    version    : 'v6.0'
+                });
+      
+                FB.AppEvents.logPageView();
+                FB.getLoginStatus(function(response) {
+                    console.log(response);
+                    statusChangeCallback(response);
+                });   
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+        </script>
+    </body>
+
